@@ -34,15 +34,9 @@ graph TD
 # Entities
 
 ```mermaid
-erDiagram
+er
         Author }|..|{ Book-Author : has       
         Author ||--o{ Book : ""
         Book-Author ||--o{ Book : receives
        
 ```
-[`Birth Place`]
-*id
-`birth city`
-'birth state'
-"birth country"					
-
