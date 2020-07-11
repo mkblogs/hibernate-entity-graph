@@ -1,2 +1,3 @@
 # hibernate-entity-graph
- Entity Graph Example Using Hibernate
+ In this example, we will discuss about Entity Graphs.
+
