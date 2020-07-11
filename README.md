@@ -1,18 +1,16 @@
 # Hibernate Entity Graph
  In Hibernate/JPA we face N+1 Problem. First we will see what is the N+1 Problem.
  
- In order to find, what is N+1 Problem Please go through the below links.
+ In order to find, what is N+1 Problem Please go through the below stackoverflow link
  
- https://www.tutorialandexample.com/hibernate-n-1-select-problem/
+ https://stackoverflow.com/questions/32453989/what-is-the-solution-for-the-n1-issue-in-jpa-and-hibernate?noredirect=1&lq=1
    
- In this example, we will discuss how to fix N+1 select problem by using Entity Graphs. 
-
-- Using Entity Manager
-- Using JPA Repository
-- Using 3rd Party Entity Graph Utility
-
-###FlowChart
-
+ We can fix N+1 select problem by using Entity Graphs provided by JPA 2.1. we can achieve following ways. 
+ 
+ - Using Entity Manager
+ - Using JPA Repository
+ - Using 3rd Party Entity Graph Utility
+  
 ```mermaid
 graph TD
 	A[Entity Graph] -->|Using Entity Manager Class | B(Hibernate Entity Manager )
