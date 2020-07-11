@@ -29,3 +29,12 @@ graph TD
 	B[Hibernate Entity Manager] --> | Using Dynamically pass graph attribute nodes | G(Dynamic Entity Graph API)
 	B[Hibernate Entity Manager] --> | Using Root Entity Graph API | H(RootGraph API)
 ```
+### DB Design
+```mermaid
+erDiagram
+        Author }|..|{ Book-Author : has       
+        Author ||--o{ Book : ""
+        Book-Author ||--o{ Book : receives
+       
+```					
+
