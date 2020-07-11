@@ -23,6 +23,8 @@ In this example we will use Hibernate Entity Manager to solve N+1 problem.
 
 
 
+
+
 ```mermaid
 graph TD
 	A[Entity Graph] -->|Using Entity Manager Class | B(Hibernate Entity Manager )
