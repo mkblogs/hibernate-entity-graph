@@ -25,7 +25,7 @@ graph TD
 	A[Entity Graph] -->|Using JPA Repository Class | C(JPA Repository )
 	A[Entity Graph] -->|Using 3rd Party Entity Graph | D(3rd Party Entity Graph Utility )
 	
-	B[Hibernate Entity Manager] --> | Using Named Entity Graph API | E(@NamedEntityGraph)
+	B[Hibernate Entity Manager] --> | Using Named Entity Graph API | E(NamedEntityGraph)
 	B[Hibernate Entity Manager] --> | Using Dynamically pass graph attribute nodes | G(Dynamic Entity Graph API)
 	B[Hibernate Entity Manager] --> | Using Root Entity Graph API | H(RootGraph API)
 ```
