@@ -30,11 +30,19 @@ graph TD
 	B[Hibernate Entity Manager] --> | Using Root Entity Graph API | H(RootGraph API)
 ```
 ### DB Design
+
+# Entities
+
 ```mermaid
 erDiagram
         Author }|..|{ Book-Author : has       
         Author ||--o{ Book : ""
         Book-Author ||--o{ Book : receives
        
-```					
+```
+[`Birth Place`]
+*id
+`birth city`
+'birth state'
+"birth country"					
 
