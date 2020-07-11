@@ -17,7 +17,11 @@ graph TD
 	A[Entity Graph] -->|Using JPA Repository Class | C(JPA Repository )
 	A[Entity Graph] -->|Using 3rd Party Entity Graph | D(3rd Party Entity Graph Utility )
 ```
+
+
 In this example we will use Hibernate Entity Manager to solve N+1 problem.
+
+
 
 ```mermaid
 graph TD
