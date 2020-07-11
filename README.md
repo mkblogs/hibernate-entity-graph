@@ -35,3 +35,9 @@ graph TD
 Class01 "1" *-- "many" Class02 : contains
 
 ```
+
+@startuml firstDiagram
+
+Class01 "1" *-- "many" Class02 : contains
+
+@enduml
