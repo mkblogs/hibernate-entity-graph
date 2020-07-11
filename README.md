@@ -31,18 +31,14 @@ graph TD
 ```
 ### DB Design
 
-<div hidden>
-```
-@startuml firstDiagram
+@startuml component
+actor client
+node app
+database db
 
-Alice -> Bob: Hello
-Bob -> Alice: Hi!
-		
+db -> app
+app -> client
 @enduml
-```
-</div>
-
-![](firstDiagram.svg)
 
 
 
