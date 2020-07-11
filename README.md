@@ -30,13 +30,19 @@ graph TD
 	B[Hibernate Entity Manager] --> | Using Root Entity Graph API | H(RootGraph API)
 ```
 ### DB Design
-```plantuml
 
+<div hidden>
+```
 @startuml firstDiagram
 
-Class01 "1" *-- "many" Class02 : contains
-
+Alice -> Bob: Hello
+Bob -> Alice: Hi!
+		
 @enduml
-
 ```
+</div>
+
+![](firstDiagram.svg)
+
+
 
