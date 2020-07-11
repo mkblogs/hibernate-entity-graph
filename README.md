@@ -30,7 +30,7 @@ graph TD
 	B[Hibernate Entity Manager] --> | Using Root Entity Graph API | H(RootGraph API)
 ```
 ### DB Design
-
+```plantuml
 @startuml component
 actor client
 node app
@@ -39,6 +39,6 @@ database db
 db -> app
 app -> client
 @enduml
-
+```
 
 
