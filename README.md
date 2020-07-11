@@ -31,12 +31,7 @@ graph TD
 ```
 ### DB Design
 
-# Entities
-
-```mermaid
-er
-        Author }|..|{ Book-Author : has       
-        Author ||--o{ Book : ""
-        Book-Author ||--o{ Book : receives
-       
-```
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
