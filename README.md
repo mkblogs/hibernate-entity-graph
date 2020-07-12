@@ -39,7 +39,7 @@ graph TD
 
 ![alt text](/ERDiagram.png)
 
-# Named Entity Graph
+## Named Entity Graph
 
 ### Entity Class (declaring Named Entity Graph as below)
 
@@ -105,7 +105,7 @@ It will load only Books objects as well as publisher associate with books
 
 ```
 
-# Dynamic Entity Graph
+## Dynamic Entity Graph
 
 ### Entity Class
 
@@ -168,7 +168,7 @@ It will load only Books objects as well as publisher associate with books
 
 ```
 
-# Root Entity Graph
+## Root Entity Graph
 
 ### Entity Class
 
