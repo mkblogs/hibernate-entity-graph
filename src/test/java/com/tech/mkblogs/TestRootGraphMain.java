@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import org.hibernate.graph.GraphParser;
 import org.hibernate.graph.RootGraph;
@@ -124,6 +125,21 @@ public class TestRootGraphMain {
 		 }
 	}
 	
+	public static void selectRootGraphQueryBooksAndLoad() {
+		System.out.println("... selectRootGraphBooksAndLoad ...");
+		EntityManager entityManager = getEntityManager();
+		String HQL ="SELECT a FROM Author a WHERE a.id = 1"; 
+		RootGraph<Author> graph = GraphParser.parse(Author.class, "books", entityManager);
+		Map<String, Object> properties = new HashMap<String, Object>();
+	    properties.put("javax.persistence.loadgraph", graph);
+	    TypedQuery<Author> query = entityManager.createQuery(HQL, Author.class);
+	    Author author = query.getSingleResult();
+		System.out.println(author.getFirstName()+" "+author.getLastName()+" wrote "+author.getBooks().size()+" books.");
+		 Set<Book> books = author.getBooks(); 
+		 for(Book book: books) {
+			 System.out.println(book.getPublisher()); 
+		 }
+	}
 	
 	public static EntityManager getEntityManager() {
 		 EntityManagerFactory entityManagerFactory =

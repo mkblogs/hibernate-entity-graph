@@ -134,7 +134,7 @@ public class Author {
 
 ```
 
-### Named Entity Graph Testing Here
+### Dynamic Entity Graph Testing Here
 
 In this example we can set attributes dynamically. Graph API has  `addAttributeNodes(property name)` method to set property names.
 We can set as many as attributesnodes to graph api. Here Author class has property name books. So we setting books attribute to graph.
@@ -164,6 +164,66 @@ It will load only Books objects as well as publisher associate with books
 	graph.addSubgraph("books").addAttributeNodes("publisher");
 	TypedQuery<Author> query = entityManager.createQuery(HQL, Author.class);
 	query.setHint("javax.persistence.loadgraph", graph);
+	Author author = query.getSingleResult();
+
+```
+
+# Root Entity Graph
+
+### Entity Class
+
+```java
+@Entity
+public class Author {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@Version
+	private Integer version;
+
+	@Column(name = "first_name")
+	private String firstName;
+
+	@Column(name = "last_name")
+	private String lastName;
+
+	@ManyToMany(mappedBy="authors",fetch = FetchType.LAZY)
+	private Set<Book> books = new HashSet<Book>();
+
+
+}
+
+```
+
+### Root Entity Graph Testing Here
+
+In this example we need to create `RootGraph` object and pass all properties to load.
+It will load only Books objects but not publisher associate with books
+
+```java
+
+	String HQL ="SELECT a FROM Author a WHERE a.id = 1"; 
+	RootGraph<Author> graph = GraphParser.parse(Author.class, "books", entityManager);
+	Map<String, Object> properties = new HashMap<String, Object>();
+	properties.put("javax.persistence.loadgraph", graph);
+	TypedQuery<Author> query = entityManager.createQuery(HQL, Author.class);
+	Author author = query.getSingleResult();
+
+```
+
+In this example we need to create `RootGraph` object and pass all properties to load.
+Author class has property name `books` and Book class has property name `publisher` 
+It will load only Books objects as well as publisher associate with books
+
+```java
+
+	String HQL ="SELECT a FROM Author a WHERE a.id = 1"; 
+	RootGraph<Author> graph = GraphParser.parse(Author.class, "books(publisher)", entityManager);
+	Map<String, Object> properties = new HashMap<String, Object>();
+	properties.put("javax.persistence.loadgraph", graph);
+	TypedQuery<Author> query = entityManager.createQuery(HQL, Author.class);
 	Author author = query.getSingleResult();
 
 ```
