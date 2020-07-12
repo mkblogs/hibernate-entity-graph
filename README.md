@@ -200,7 +200,8 @@ public class Author {
 ### Root Entity Graph Testing Here
 
 In this example we need to create `RootGraph` object and pass all properties to load.
-It will load only Books objects but not publisher associate with books
+
+In this example, it will load only Books objects but not publisher associate with books
 
 ```java
 
@@ -213,9 +214,9 @@ It will load only Books objects but not publisher associate with books
 
 ```
 
-In this example we need to create `RootGraph` object and pass all properties to load.
-Author class has property name `books` and Book class has property name `publisher` 
-It will load only Books objects as well as publisher associate with books
+In this example we need to create `RootGraph` object and pass all properties to load. Author class has property name `books` and Book class has property name `publisher` 
+
+In this example, it will load only Books objects as well as publisher associate with books
 
 ```java
 
