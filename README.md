@@ -260,7 +260,7 @@ It will load only Books objects as well as publisher associate with books
 	   System.out.println(book.getPublisher()); 
 	}
 ```
-we can notice that it issued only one query to fetch all data. This is because we included books as part of graph.
+we can notice that it issued only one query to fetch all data. This is because we included books and publisher as part of graph.
 
 ```log
 19:31:18,884 DEBUG [org.hibernate.SQL] - 
@@ -397,6 +397,46 @@ It will load only Books objects but not publisher associate with books
 	}
 
 ```
+```log
+  20:02:56,111 DEBUG [org.hibernate.SQL] - 
+    select
+        author0_.id as id1_0_0_,
+        book2_.id as id1_1_1_,
+        author0_.first_name as first_na2_0_0_,
+        author0_.last_name as last_nam3_0_0_,
+        author0_.version as version4_0_0_,
+        book2_.publisher_id as publishe5_1_1_,
+        book2_.publishing_date as publishi2_1_1_,
+        book2_.title as title3_1_1_,
+        book2_.version as version4_1_1_,
+        books1_.author_id as author_i2_2_0__,
+        books1_.book_id as book_id1_2_0__ 
+    from
+        author author0_ 
+    left outer join
+        book_author books1_ 
+            on author0_.id=books1_.author_id 
+    left outer join
+        book book2_ 
+            on books1_.book_id=book2_.id 
+    where
+        author0_.id=1
+
+Joshua Bloch wrote 1 books.
+
+20:02:56,178 DEBUG [org.hibernate.SQL] - 
+    select
+        publisher0_.id as id1_3_0_,
+        publisher0_.name as name2_3_0_,
+        publisher0_.version as version3_3_0_ 
+    from
+        publisher publisher0_ 
+    where
+        publisher0_.id=?
+
+Publisher name: Addison-Wesley Professional
+  
+```
 
 Graph API provide to add sub graph and its properties also, by using  `addSubgraph(property name)` and `addAttributeNodes(property name)`
 Author class has property name `books` and Book class has property name `publisher` 
@@ -416,6 +456,42 @@ It will load only Books objects as well as publisher associate with books
 	for(Book book: books) {
 	   System.out.println(book.getPublisher()); 
 	}
+
+```
+```log
+20:03:52,435 DEBUG [org.hibernate.SQL] - 
+    select
+        author0_.id as id1_0_0_,
+        book2_.id as id1_1_1_,
+        publisher3_.id as id1_3_2_,
+        author0_.first_name as first_na2_0_0_,
+        author0_.last_name as last_nam3_0_0_,
+        author0_.version as version4_0_0_,
+        book2_.publisher_id as publishe5_1_1_,
+        book2_.publishing_date as publishi2_1_1_,
+        book2_.title as title3_1_1_,
+        book2_.version as version4_1_1_,
+        books1_.author_id as author_i2_2_0__,
+        books1_.book_id as book_id1_2_0__,
+        publisher3_.name as name2_3_2_,
+        publisher3_.version as version3_3_2_ 
+    from
+        author author0_ 
+    left outer join
+        book_author books1_ 
+            on author0_.id=books1_.author_id 
+    left outer join
+        book book2_ 
+            on books1_.book_id=book2_.id 
+    left outer join
+        publisher publisher3_ 
+            on book2_.publisher_id=publisher3_.id 
+    where
+        author0_.id=1
+
+Joshua Bloch wrote 1 books.
+Publisher name: Addison-Wesley Professional
+
 
 ```
 
@@ -517,6 +593,46 @@ In this example, it will load only Books objects but not publisher associate wit
 	}
 
 ```
+```log
+20:04:50,371 DEBUG [org.hibernate.SQL] - 
+    select
+        author0_.id as id1_0_0_,
+        author0_.first_name as first_na2_0_0_,
+        author0_.last_name as last_nam3_0_0_,
+        author0_.version as version4_0_0_,
+        books1_.author_id as author_i2_2_1_,
+        book2_.id as book_id1_2_1_,
+        book2_.id as id1_1_2_,
+        book2_.publisher_id as publishe5_1_2_,
+        book2_.publishing_date as publishi2_1_2_,
+        book2_.title as title3_1_2_,
+        book2_.version as version4_1_2_ 
+    from
+        author author0_ 
+    left outer join
+        book_author books1_ 
+            on author0_.id=books1_.author_id 
+    left outer join
+        book book2_ 
+            on books1_.book_id=book2_.id 
+    where
+        author0_.id=?
+
+Joshua Bloch wrote 1 books.
+
+20:04:50,424 DEBUG [org.hibernate.SQL] - 
+    select
+        publisher0_.id as id1_3_0_,
+        publisher0_.name as name2_3_0_,
+        publisher0_.version as version3_3_0_ 
+    from
+        publisher publisher0_ 
+    where
+        publisher0_.id=?
+
+Publisher name: Addison-Wesley Professional
+
+```
 
 In this example we need to create `RootGraph` object and pass all properties to load. Author class has property name `books` and Book class has property name `publisher` 
 
@@ -536,4 +652,38 @@ In this example, it will load only Books objects as well as publisher associate 
 	   System.out.println(book.getPublisher()); 
 	}
 ```
+```log
+20:05:40,676 DEBUG [org.hibernate.SQL] - 
+    select
+        author0_.id as id1_0_0_,
+        author0_.first_name as first_na2_0_0_,
+        author0_.last_name as last_nam3_0_0_,
+        author0_.version as version4_0_0_,
+        books1_.author_id as author_i2_2_1_,
+        book2_.id as book_id1_2_1_,
+        book2_.id as id1_1_2_,
+        book2_.publisher_id as publishe5_1_2_,
+        book2_.publishing_date as publishi2_1_2_,
+        book2_.title as title3_1_2_,
+        book2_.version as version4_1_2_,
+        publisher3_.id as id1_3_3_,
+        publisher3_.name as name2_3_3_,
+        publisher3_.version as version3_3_3_ 
+    from
+        author author0_ 
+    left outer join
+        book_author books1_ 
+            on author0_.id=books1_.author_id 
+    left outer join
+        book book2_ 
+            on books1_.book_id=book2_.id 
+    left outer join
+        publisher publisher3_ 
+            on book2_.publisher_id=publisher3_.id 
+    where
+        author0_.id=?
 
+Joshua Bloch wrote 1 books.
+Publisher name: Addison-Wesley Professional
+
+```
