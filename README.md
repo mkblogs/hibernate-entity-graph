@@ -111,13 +111,6 @@ It will load only Books objects as well as publisher associate with books
 
 ```java
 @Entity
-@Table(name = "author")
-@NamedEntityGraph(name = "graph.author.books.publisher", 
-	attributeNodes = @NamedAttributeNode(value = "books", subgraph = "books"),
-	subgraphs = @NamedSubgraph(name = "books", attributeNodes = @NamedAttributeNode("publisher"))    )
-
-@NamedEntityGraph(name = "graph.author.books", attributeNodes = @NamedAttributeNode(value = "books"))
-
 public class Author {
 
 	@Id
@@ -143,29 +136,32 @@ public class Author {
 
 ### Named Entity Graph Testing Here
 
-In this example we are using `@NamedEntityGraph` name attribute(graph.author.books) to get entity graph api. 
+In this example we are using dynamically setting attribute values by using `addAttributeNodes(property name)` Author class has property name books.
 It will load only Books objects but not publisher associate with books
 
 ```java
 
+	String HQL ="SELECT a FROM Author a WHERE a.id = 1"; 
 	EntityManager entityManager = getEntityManager();
-	String hql = "SELECT a FROM Author a WHERE a.id = 1";
-	EntityGraph graph = entityManager.getEntityGraph("graph.author.books");
-	TypedQuery<Author> query = entityManager.createQuery(hql, Author.class);
+	EntityGraph<Author> graph = entityManager.createEntityGraph(Author.class);
+	graph.addAttributeNodes("books");
+	TypedQuery<Author> query = entityManager.createQuery(HQL, Author.class);
 	query.setHint("javax.persistence.loadgraph", graph);
 	Author author = query.getSingleResult();
 
 ```
 
-In this example we are using `@NamedEntityGraph` name attribute(graph.author.books.publisher) to get entity graph api. 
+In this example we are using dynamically setting attribute values by using `addAttributeNodes(property name)` and `addSubgraph(property name)`
+Author class has property name `books` and Book class has property name `publisher` 
 It will load only Books objects as well as publisher associate with books
 
 ```java
 
 	EntityManager entityManager = getEntityManager();
-	String hql = "SELECT a FROM Author a WHERE a.id = 1";
-	EntityGraph graph = entityManager.getEntityGraph("graph.author.books");		
-	TypedQuery<Author> query = entityManager.createQuery(hql, Author.class);
+	String HQL ="SELECT a FROM Author a WHERE a.id = 1"; 
+	EntityGraph<Author> graph = entityManager.createEntityGraph(Author.class);
+	graph.addSubgraph("books").addAttributeNodes("publisher");
+	TypedQuery<Author> query = entityManager.createQuery(HQL, Author.class);
 	query.setHint("javax.persistence.loadgraph", graph);
 	Author author = query.getSingleResult();
 

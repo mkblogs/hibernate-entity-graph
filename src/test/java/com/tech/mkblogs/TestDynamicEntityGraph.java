@@ -66,10 +66,11 @@ public class TestDynamicEntityGraph {
 
 	public static void selectDynamicGraphBooksAndFetch() {
 		System.out.println("... selectDynamicGraphBooksAndFetch ...");
+		String HQL ="SELECT a FROM Author a WHERE a.id = 1"; 
 		EntityManager entityManager = getEntityManager();
 		EntityGraph<Author> graph = entityManager.createEntityGraph(Author.class);		
 		graph.addAttributeNodes("books");
-		TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a WHERE a.id = 1", Author.class);
+		TypedQuery<Author> query = entityManager.createQuery(HQL, Author.class);
 		query.setHint("javax.persistence.fetchgraph", graph);
 		Author author = query.getSingleResult();
 		System.out.println(author.getFirstName()+" "+author.getLastName()+" wrote "+author.getBooks().size()+" books.");
@@ -81,10 +82,11 @@ public class TestDynamicEntityGraph {
 	
 	public static void selectDynamicGraphBooksPublisherAndFetch() {
 		System.out.println("... selectDynamicGraphBooksPublisherAndFetch ...");
+		String HQL ="SELECT a FROM Author a WHERE a.id = 1"; 
 		EntityManager entityManager = getEntityManager();
 		EntityGraph<Author> graph = entityManager.createEntityGraph(Author.class);		
 		graph.addSubgraph("books").addAttributeNodes("publisher");
-		TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a WHERE a.id = 1", Author.class);
+		TypedQuery<Author> query = entityManager.createQuery(HQL, Author.class);
 		query.setHint("javax.persistence.fetchgraph", graph);
 		Author author = query.getSingleResult();
 		System.out.println(author.getFirstName()+" "+author.getLastName()+" wrote "+author.getBooks().size()+" books.");
@@ -96,10 +98,11 @@ public class TestDynamicEntityGraph {
 	
 	public static void selectDynamicGraphBooksAndLoad() {
 		System.out.println("... selectDynamicGraphBooksAndLoad ...");
+		String HQL ="SELECT a FROM Author a WHERE a.id = 1"; 
 		EntityManager entityManager = getEntityManager();
 		EntityGraph<Author> graph = entityManager.createEntityGraph(Author.class);
 		graph.addAttributeNodes("books");
-		TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a WHERE a.id = 1", Author.class);
+		TypedQuery<Author> query = entityManager.createQuery(HQL, Author.class);
 		query.setHint("javax.persistence.loadgraph", graph);
 		Author author = query.getSingleResult();
 		System.out.println(author.getFirstName()+" "+author.getLastName()+" wrote "+author.getBooks().size()+" books.");
@@ -112,9 +115,10 @@ public class TestDynamicEntityGraph {
 	public static void selectDynamicGraphBooksPublisherAndLoad() {
 		System.out.println("... selectDynamicGraphBooksPublisherAndLoad ...");
 		EntityManager entityManager = getEntityManager();
+		String HQL ="SELECT a FROM Author a WHERE a.id = 1"; 
 		EntityGraph<Author> graph = entityManager.createEntityGraph(Author.class);
 		graph.addSubgraph("books").addAttributeNodes("publisher");
-		TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a WHERE a.id = 1", Author.class);
+		TypedQuery<Author> query = entityManager.createQuery(HQL, Author.class);
 		query.setHint("javax.persistence.loadgraph", graph);
 		Author author = query.getSingleResult();
 		System.out.println(author.getFirstName()+" "+author.getLastName()+" wrote "+author.getBooks().size()+" books.");
