@@ -50,7 +50,7 @@ graph TD
 	attributeNodes = @NamedAttributeNode(value = "books", subgraph = "books"),
 	subgraphs = @NamedSubgraph(name = "books", attributeNodes = @NamedAttributeNode("publisher"))    )
 
-@NamedEntityGraph(name = "**graph.author.books**", attributeNodes = @NamedAttributeNode(value = "books"))
+@NamedEntityGraph(name = "graph.author.books", attributeNodes = @NamedAttributeNode(value = "books"))
 
 public class Author {
 
@@ -77,7 +77,7 @@ public class Author {
 
 ### Named Entity Graph Testing Here
 
-In this example we are using `@NamedEntityGraph` name attribute `@@graph.author.books@@` to get entity graph api. 
+In this example we are using `@NamedEntityGraph` name attribute `graph.author.books` to get entity graph api. 
 It will load only Books objects but not publisher associate with books
 
 ```java
