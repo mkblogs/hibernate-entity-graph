@@ -5,7 +5,7 @@
  
  https://stackoverflow.com/questions/32453989/what-is-the-solution-for-the-n1-issue-in-jpa-and-hibernate?noredirect=1&lq=1
    
- We can fix N+1 select problem by using Entity Graphs provided by JPA 2.1. we can achieve following ways. 
+ We can fix N+1 select problem by using Entity Graphs provided by JPA 2.1. we can achieve it in the following ways. 
  
  - Using Entity Manager
  - Using JPA Repository
