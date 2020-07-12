@@ -39,4 +39,64 @@ graph TD
 
 ![alt text](/ERDiagram.png)
 
+### Entity Class (declaring Named Entity Graph as below)
 
+```java
+@Entity
+@Table(name = "author")
+@NamedEntityGraph(name = "graph.author.books.publisher", 
+	attributeNodes = @NamedAttributeNode(value = "books", subgraph = "books"),
+	subgraphs = @NamedSubgraph(name = "books", attributeNodes = @NamedAttributeNode("publisher"))    )
+
+@NamedEntityGraph(name = "graph.author.books", attributeNodes = @NamedAttributeNode(value = "books"))
+
+public class Author {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@Version
+	private Integer version;
+
+	@Column(name = "first_name")
+	private String firstName;
+
+	@Column(name = "last_name")
+	private String lastName;
+
+	@ManyToMany(mappedBy="authors",fetch = FetchType.LAZY)
+	private Set<Book> books = new HashSet<Book>();
+
+
+}
+
+```
+
+### Testing Here
+
+In this example we are using NamedEntityGraph name attribute(graph.author.books) to get entity graph api. 
+It will load only Books objects but not publisher associate with books
+
+```java
+
+	EntityManager entityManager = getEntityManager();
+	EntityGraph graph = entityManager.getEntityGraph("graph.author.books");		
+	TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a WHERE a.id = 1", Author.class);
+	query.setHint("javax.persistence.loadgraph", graph);
+	Author author = query.getSingleResult();
+
+```
+
+In this example we are using NamedEntityGraph name attribute(graph.author.books.publisher) to get entity graph api. 
+It will load only Books objects as well as publisher associate with books
+
+```java
+
+	EntityManager entityManager = getEntityManager();
+	EntityGraph graph = entityManager.getEntityGraph("graph.author.books");		
+	TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a WHERE a.id = 1", Author.class);
+	query.setHint("javax.persistence.loadgraph", graph);
+	Author author = query.getSingleResult();
+
+```
