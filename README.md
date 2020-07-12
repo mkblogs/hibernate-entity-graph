@@ -180,7 +180,7 @@ public class Publisher {
 ### Named Entity Graph Testing Here
 
 In this example we are using `@NamedEntityGraph` name attribute `graph.author.books` to get entity graph api. 
-It will load only Books objects but not publisher associate with books
+It will load only Book objects but not publisher associate with books
 
 ```java
 
@@ -244,7 +244,7 @@ Publisher name: Addison-Wesley Professional
 ```
 
 In this example we are using `@NamedEntityGraph` name attribute `graph.author.books.publisher` to get entity graph api. 
-It will load only Books objects as well as publisher associate with books
+It will load Book objects as well as publisher associate with books
 
 ```java
 
@@ -379,7 +379,7 @@ public class Publisher {
 
 In this example we can set attributes dynamically. Graph API has  `addAttributeNodes(property name)` method to set property names.
 We can set as many as attributesnodes to graph api. Here Author class has property name books. So we setting books attribute to graph.
-It will load only Books objects but not publisher associate with books
+It will load only Book objects but not publisher associate with books
 
 ```java
 
@@ -440,7 +440,7 @@ Publisher name: Addison-Wesley Professional
 
 Graph API provide to add sub graph and its properties also, by using  `addSubgraph(property name)` and `addAttributeNodes(property name)`
 Author class has property name `books` and Book class has property name `publisher` 
-It will load only Books objects as well as publisher associate with books
+It will load Book objects as well as publisher associate with books
 
 ```java
 
@@ -576,7 +576,7 @@ public class Publisher {
 
 In this example we need to create `RootGraph` object and pass all properties to load.
 
-In this example, it will load only Books objects but not publisher associate with books
+In this example, it will load only Book objects but not publisher associate with books
 
 ```java
 
@@ -636,7 +636,7 @@ Publisher name: Addison-Wesley Professional
 
 In this example we need to create `RootGraph` object and pass all properties to load. Author class has property name `books` and Book class has property name `publisher` 
 
-In this example, it will load only Books objects as well as publisher associate with books
+In this example, it will load Book objects as well as publisher associate with books
 
 ```java
 
