@@ -67,8 +67,55 @@ public class Author {
 	@ManyToMany(mappedBy="authors",fetch = FetchType.LAZY)
 	private Set<Book> books = new HashSet<Book>();
 
-
 }
+
+@Entity
+@Table(name = "book")
+public class Book {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@Version
+	private Integer version;
+
+	private String title;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "publishing_date")
+	private Date publishingDate;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="publisher_id")
+	private Publisher publisher;
+
+	@ManyToMany
+	@JoinTable(
+		      name="book_author",
+		      joinColumns={@JoinColumn(name="book_id", referencedColumnName="id")},
+		      inverseJoinColumns={@JoinColumn(name="author_id", referencedColumnName="id")})
+	private Set<Author> authors = new HashSet<Author>();
+	
+}
+
+@Entity
+@Table(name = "publisher")
+public class Publisher {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@Version
+	private Integer version;
+
+	private String name;
+
+	@OneToMany(mappedBy = "publisher")
+	private Set<Book> books = new HashSet<Book>();
+	
+}		
 
 ```
 
