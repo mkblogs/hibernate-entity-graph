@@ -58,10 +58,10 @@ public class TestDynamicEntityGraph {
 		EntityManager entityManager = getEntityManager();
 		Author author = entityManager.find(Author.class, 1);
 		System.out.println(author.getFirstName()+" "+author.getLastName()+" wrote "+author.getBooks().size()+" books.");
-		 Set<Book> books = author.getBooks(); 
-		 for(Book book: books) {
+		Set<Book> books = author.getBooks(); 
+		for(Book book: books) {
 			 System.out.println(book.getPublisher()); 
-		 }
+		}
 	}
 
 	public static void selectDynamicGraphBooksAndFetch() {
