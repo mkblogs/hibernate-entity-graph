@@ -19,7 +19,7 @@ graph TD
 ```
 
 
-In this example we will use Hibernate Entity Manager to solve N+1 problem.
+In this example we will use `Hibernate Entity Manager` to solve N+1 problem.
 
 
 
