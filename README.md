@@ -107,7 +107,7 @@ It will load only Books objects as well as publisher associate with books
 
 # Dynamic Entity Graph
 
-### Entity Class (declaring Named Entity Graph as below)
+### Entity Class
 
 ```java
 @Entity
@@ -136,7 +136,8 @@ public class Author {
 
 ### Named Entity Graph Testing Here
 
-In this example we are using dynamically setting attribute values by using `addAttributeNodes(property name)` Author class has property name books.
+In this example we can set attributes dynamically. Graph API has  `addAttributeNodes(property name)` method to set property names.
+We can set as many as attributesnodes to graph api. Here Author class has property name books. So we setting books attribute to graph.
 It will load only Books objects but not publisher associate with books
 
 ```java
@@ -151,7 +152,7 @@ It will load only Books objects but not publisher associate with books
 
 ```
 
-In this example we are using dynamically setting attribute values by using `addAttributeNodes(property name)` and `addSubgraph(property name)`
+Graph API provide to add sub graph and its properties also, by using  `addSubgraph(property name)` and `addAttributeNodes(property name)`
 Author class has property name `books` and Book class has property name `publisher` 
 It will load only Books objects as well as publisher associate with books
 
