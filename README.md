@@ -46,7 +46,7 @@ graph TD
 ```java
 @Entity
 @Table(name = "author")
-@NamedEntityGraph(name = "**graph.author.books.publisher**", 
+@NamedEntityGraph(name = "`**graph.author.books.publisher**`", 
 	attributeNodes = @NamedAttributeNode(value = "books", subgraph = "books"),
 	subgraphs = @NamedSubgraph(name = "books", attributeNodes = @NamedAttributeNode("publisher"))    )
 
