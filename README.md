@@ -58,10 +58,7 @@ graph TD
         author author0_ 
     where
         author0_.id=?
-19:22:24,833 TRACE [org.hibernate.type.descriptor.sql.BasicBinder] - binding parameter [1] as [INTEGER] - [1]
-19:22:24,846 TRACE [org.hibernate.type.descriptor.sql.BasicExtractor] - extracted value ([first_na2_0_0_] : [VARCHAR]) - [Joshua]
-19:22:24,846 TRACE [org.hibernate.type.descriptor.sql.BasicExtractor] - extracted value ([last_nam3_0_0_] : [VARCHAR]) - [Bloch]
-19:22:24,847 TRACE [org.hibernate.type.descriptor.sql.BasicExtractor] - extracted value ([version4_0_0_] : [INTEGER]) - [0]
+
 19:22:24,867 DEBUG [org.hibernate.SQL] - 
     select
         books0_.author_id as author_i2_2_0_,
@@ -78,15 +75,9 @@ graph TD
             on books0_.book_id=book1_.id 
     where
         books0_.author_id=?
-19:22:24,869 TRACE [org.hibernate.type.descriptor.sql.BasicBinder] - binding parameter [1] as [INTEGER] - [1]
-19:22:24,874 TRACE [org.hibernate.type.descriptor.sql.BasicExtractor] - extracted value ([id1_1_1_] : [INTEGER]) - [1]
-19:22:24,875 TRACE [org.hibernate.type.descriptor.sql.BasicExtractor] - extracted value ([publishe5_1_1_] : [INTEGER]) - [1]
-19:22:24,876 TRACE [org.hibernate.type.descriptor.sql.BasicExtractor] - extracted value ([publishi2_1_1_] : [DATE]) - [2008-05-08]
-19:22:24,876 TRACE [org.hibernate.type.descriptor.sql.BasicExtractor] - extracted value ([title3_1_1_] : [VARCHAR]) - [Effective Java]
-19:22:24,876 TRACE [org.hibernate.type.descriptor.sql.BasicExtractor] - extracted value ([version4_1_1_] : [INTEGER]) - [0]
-19:22:24,877 TRACE [org.hibernate.type.descriptor.sql.BasicExtractor] - extracted value ([author_i2_2_0_] : [INTEGER]) - [1]
-19:22:24,877 TRACE [org.hibernate.type.descriptor.sql.BasicExtractor] - extracted value ([book_id1_2_0_] : [INTEGER]) - [1]
+
 Joshua Bloch wrote 1 books.
+
 19:22:24,887 DEBUG [org.hibernate.SQL] - 
     select
         publisher0_.id as id1_3_0_,
@@ -96,10 +87,9 @@ Joshua Bloch wrote 1 books.
         publisher publisher0_ 
     where
         publisher0_.id=?
-19:22:24,888 TRACE [org.hibernate.type.descriptor.sql.BasicBinder] - binding parameter [1] as [INTEGER] - [1]
-19:22:24,891 TRACE [org.hibernate.type.descriptor.sql.BasicExtractor] - extracted value ([name2_3_0_] : [VARCHAR]) - [Addison-Wesley Professional]
-19:22:24,891 TRACE [org.hibernate.type.descriptor.sql.BasicExtractor] - extracted value ([version3_3_0_] : [INTEGER]) - [0]
+
 Publisher name: Addison-Wesley Professional
+
 ```
 
 We can notice when I tried to access author, books and publisher, it issues 3 queries to fetch the data.
