@@ -68,8 +68,9 @@ public class TestNamedEntityGraph {
 	public static void selectWithEntityGraphWithFetchGraph() {
 		System.out.println("... selectWithEntityGraphWithFetchGraph ...");		
 		EntityManager entityManager = getEntityManager();
-		EntityGraph graph = entityManager.getEntityGraph("graph.author.books");		
-		TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a WHERE a.id = 1", Author.class);
+		EntityGraph graph = entityManager.getEntityGraph("graph.author.books");	
+		String hql = "SELECT a FROM Author a WHERE a.id = 1";
+		TypedQuery<Author> query = entityManager.createQuery(hql, Author.class);
 		query.setHint("javax.persistence.fetchgraph", graph);
 		Author author = query.getSingleResult();
 		System.out.println(author.getFirstName()+" "+author.getLastName()+" wrote "+author.getBooks().size()+" books.");
@@ -83,8 +84,9 @@ public class TestNamedEntityGraph {
 	public static void selectWithEntityGraphWithLoad() {
 		System.out.println("... selectWithEntityGraphWithLoad ...");
 		EntityManager entityManager = getEntityManager();
+		String hql = "SELECT a FROM Author a WHERE a.id = 1";
 		EntityGraph graph = entityManager.getEntityGraph("graph.author.books");
-		TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a WHERE a.id = 1", Author.class);
+		TypedQuery<Author> query = entityManager.createQuery(hql, Author.class);
 		query.setHint("javax.persistence.loadgraph", graph);
 		Author author = query.getSingleResult();
 		System.out.println(author.getFirstName()+" "+author.getLastName()+" wrote "+author.getBooks().size()+" books.");
@@ -98,8 +100,9 @@ public class TestNamedEntityGraph {
 	public static void selectWithNamedEntityGraphWithPublisherWithFetchGraph() {
 		System.out.println("... selectWithNamedEntityGraphWithPublisherWithFetchGraph ...");		
 		EntityManager entityManager = getEntityManager();
+		String hql = "SELECT a FROM Author a WHERE a.id = 1";
 		EntityGraph graph = entityManager.getEntityGraph("graph.author.books.publisher");		
-		TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a WHERE a.id = 1", Author.class);
+		TypedQuery<Author> query = entityManager.createQuery(hql, Author.class);
 		query.setHint("javax.persistence.fetchgraph", graph);
 		Author author = query.getSingleResult();
 		System.out.println(author.getFirstName()+" "+author.getLastName()+" wrote "+author.getBooks().size()+" books.");
@@ -112,8 +115,9 @@ public class TestNamedEntityGraph {
 	public static void selectWithNamedEntityGraphWithPublisherWithLoadGraph() {
 		System.out.println("... selectWithNamedEntityGraphWithPublisherWithFetchGraph ...");		
 		EntityManager entityManager = getEntityManager();
+		String hql = "SELECT a FROM Author a WHERE a.id = 1";
 		EntityGraph graph = entityManager.getEntityGraph("graph.author.books.publisher");
-		TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a WHERE a.id = 1", Author.class);
+		TypedQuery<Author> query = entityManager.createQuery(hql, Author.class);
 		query.setHint("javax.persistence.loadgraph", graph);
 		Author author = query.getSingleResult();
 		System.out.println(author.getFirstName()+" "+author.getLastName()+" wrote "+author.getBooks().size()+" books.");
