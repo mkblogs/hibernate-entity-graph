@@ -36,6 +36,16 @@ graph TD
 
 ![alt text](/ERDiagram.png)
 
+## Without Entity Graph
+```java
+	EntityManager entityManager = getEntityManager();
+	Author author = entityManager.find(Author.class, 1);
+	
+```
+```log
+this is log here
+```
+
 ## Named Entity Graph
 
 ### Entity Class (declaring Named Entity Graph as below)
